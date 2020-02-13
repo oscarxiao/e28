@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Dummy Rock Paper Scissors</title>
+    <meta charset="utf-8" />
+  </head>
+
+  <body>
+    <label for="signs">Choose a hand gesture:</label>
+    <select id="signs">
+      <option>Rock</option>
+      <option>Paper</option>
+      <option>Scissors</option>
+    </select>
+
+    <button onclick="winOrLose()">Ready to see Magic!</button>
+    <p id="demo"></p>
+
+    <script>
+      function winOrLose() {
+        // Extracting data from the DOM
+        let sign = document.getElementById("signs").value;
+        // 0 represents Rock, 1 represents paper, 2 represents Scissors
+        // generate a random number between 0 and 2
+        let random = Math.floor(Math.random() * 20) % 3;
+        if (random == 0 && sign == "Rock") {
+          document.getElementById("demo").innerHTML = "Draw Game!";
+        } else if (random == 0 && sign == "Paper") {
+          document.getElementById("demo").innerHTML =
+            "Congratuations! You won!";
+        } else if (random == 0 && sign == "Scissors") {
+          document.getElementById("demo").innerHTML =
+            "Sorry, You can try again!";
+        } else if (random == 1 && sign == "Rock") {
+          document.getElementById("demo").innerHTML =
+            "Sorry, You can try again!";
+        } else if (random == 1 && sign == "Paper") {
+          document.getElementById("demo").innerHTML = "Draw Game!";
+        } else if (random == 1 && sign == "Scissors") {
+          document.getElementById("demo").innerHTML =
+            "Congratuations! You won!";
+        } else if (random == 2 && sign == "Rock") {
+          document.getElementById("demo").innerHTML =
+            "Congratuations! You won!";
+        } else if (random == 2 && sign == "Paper") {
+          document.getElementById("demo").innerHTML =
+            "Sorry, You can try again!";
+        } else if (random == 2 && sign == "Scissors") {
+          document.getElementById("demo").innerHTML = "Draw Game!";
+        }
+      }
+    </script>
+  </body>
+</html>
