@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shopping list</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      Shopping list <br />
+      Qty:
+      <input type="text" v-model.number="itemAmount" />
+
+      {{itemAmount}} Item:
+      <input
+        type="text"
+        v-model="itemName"
+        @keyup.enter="combineAmountAndName"
+      />
+
+      {{itemName}}
+
+      <button @click="combineAmountAndName">Add</button>
+
+      {{itemWillBeInItems}}
+
+      <ul>
+        <li v-for="(value, name) in items">{{value}} {{name}}</li>
+      </ul>
+    </div>
+  </body>
+</html>
