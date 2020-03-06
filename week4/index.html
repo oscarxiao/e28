@@ -15,20 +15,14 @@
       <input type="text" v-model.number="itemAmount" />
 
       {{itemAmount}} Item:
-      <input
-        type="text"
-        v-model="itemName"
-        @keyup.enter="combineAmountAndName"
-      />
+      <input type="text" v-model="itemName" @keyup.enter="submitItem" />
 
       {{itemName}}
 
-      <button @click="combineAmountAndName">Add</button>
-
-      {{itemWillBeInItems}}
+      <button @click="submitItem">Add</button>
 
       <ul>
-        <li v-for="(value, name) in items">{{value}} {{name}}</li>
+        <li v-for="item in items">{{item}}</li>
       </ul>
     </div>
   </body>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shopping list</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+    <style>
+      .correct {
+        background-color: green;
+        margin-right: 1300px;
+      }
+      .error {
+        background-color: red;
+        margin-right: 1300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      <p>
+        Word Scramble
+      </p>
+      <div v-if="!playerName">
+        <label>
+          Enter your player name:
+          <input type="text" v-model.lazy="playerName" @click="shuffleWord" />
+        </label>
+
+        <button>Let's play!</button>
+      </div>
+      <div v-if="playerName">
+        Game on, {{playerName}} ! Your mysteryword is: {{scrambledWord}} <br />
+        Hint:{{hint}} <br />
+        <!-- {{temp1}} <br /> -->
+
+        Your guess:
+        <input type="text" v-model.lazy="guess" @keyup.enter="compareWords" />
+        <button @click="compareWords">Submit guess</button>
+        {{guess}} {{word}} {{scrambledWord}}
+      </div>
+
+      <div v-if="guess">
+        <div v-if="guess==word">
+          <div :class="{correct:comparedResult}">
+            {{feedback}}
+          </div>
+
+          <button @click="playAgainButton">Play again</button>
+        </div>
+        <div v-else-if="guess!=word">
+          <div :class="{error:!comparedResult}">
+            {{feedback}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
