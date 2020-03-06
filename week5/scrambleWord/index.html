@@ -31,14 +31,14 @@
         <button>Let's play!</button>
       </div>
       <div v-if="playerName">
-        Game on, {{playerName}} ! Your mysteryword is: {{scrambledWord}} <br />
+        Game on, {{playerName}} !<br />
+        Your mysteryword is: {{scrambledWord}} <br />
         Hint:{{hint}} <br />
         <!-- {{temp1}} <br /> -->
 
         Your guess:
         <input type="text" v-model.lazy="guess" @keyup.enter="compareWords" />
         <button @click="compareWords">Submit guess</button>
-        {{guess}} {{word}} {{scrambledWord}}
       </div>
 
       <div v-if="guess">
