@@ -1,13 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Dummy Rock Paper Scissors</title>
+    <title>Rock Paper Scissors</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    />
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+      .computerSelection {
+        background-color: white;
+        width: 50px;
+        border: 5px solid rgb(8, 94, 145);
+        padding: 5px;
+        margin: 2px;
+      }
+      .lose {
+        background-color: white;
+        width: 50px;
+        border: 5px solid green;
+        padding: 5px;
+        margin: 2px;
+      }
+    </style>
+
     <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
   </head>
 
   <body>
-    <h1>
-      Project Rock Paper Scissors
-    </h1>
+    <div id="app" v-cloak>
+      <h1>
+        Project Rock Paper Scissors
+      </h1>
+
+      <div class="askFirstAndLastName" v-if="!playerFullName">
+        <label>
+          Please enter your first name:
+          <input type="text" v-model.lazy="playerFirstName" />
+          last name:
+          <input type="text" v-model.lazy="playerLastName" />
+          <button @click="combineToFullName">
+            Combine last name and first name!
+          </button>
+        </label>
+      </div>
+
+      <div class="welcomeMessages" v-else>
+        Welcome to Rock Paper Sissors Game, {{playerFullName}}
+      </div>
+
+      <div class="playersOptions" v-if="playerFullName">
+        <label>
+          Please select your hand sign and click "Ready to play!" button
+          <select v-model="playerSelected">
+            <option value="">Default</option>
+            <option value="Rock">Rock</option>
+            <option value="Paper">Paper</option>
+            <option value="Scissors">Scissors</option>
+          </select>
+        </label>
+        <button v-on:click="genRanNumber">
+          Ready to play!
+        </button>
+
+        <!-- <ul>
+          <li v-for="RandomNumber in RandomNumbers">{{RandomNumber}}</li>
+        </ul> -->
+      </div>
+
+      <div class="computersChoice" v-if="playerFullName">
+        <label>Computer's choice is:</label>
+        <ul>
+          <li>
+            <span :class="{computerSelection:computerSelected=='Rock'}"
+              ><i class="far fa-hand-rock"></i>Rock</span
+            >
+          </li>
+          <li>
+            <span :class="{computerSelection:computerSelected=='Paper'}"
+              ><i class="far fa-hand-paper"></i>Paper</span
+            >
+          </li>
+          <li>
+            <span :class="{computerSelection:computerSelected=='Scissor'}"
+              ><i class="far fa-hand-scissors"></i>Scissor</span
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div v-if="playerFullName" class="historyResults">
+        <ul>
+          <li v-for="theResult in Results ">
+            computer is {{theResult.computer}}, player is {{theResult.player}},
+            Results is {{theResult.result}}
+          </li>
+          <li>
+            Total number games you played: {{totalGame}}
+          </li>
+          <li>
+            Win is {{playerWin}}
+          </li>
+          <li>
+            Lose is {{playerLose}}
+          </li>
+          <li>
+            Draw game is {{playerDraw}}
+          </li>
+        </ul>
+        <!-- Total number games you played: {{totalGame}} -->
+      </div>
+    </div>
   </body>
 </html>

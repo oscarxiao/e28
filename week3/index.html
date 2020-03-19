@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Shopping list</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+
+  <body>
+    <div id="app" v-cloak>
+      1. <input type="text" v-model="userName" />
+      {{userName}}
+      <br />
+      <!-- 2. <input type="text" v-model="userName" :keyup.enter="clearOutUser()" /> -->
+      2. <input type="text" v-model="userName" @keyup.enter="clearOutUser" />
+    </div>
+  </body>
+</html>
