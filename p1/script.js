@@ -16,7 +16,10 @@ let app = new Vue({
     playerLose: 0,
     playerDraw: 0,
 
-    winIsTrue: null
+    winIsTrue: null,
+    feedbackMessage: "",
+    soHistory: false,
+    sStatistic: false
   },
   methods: {
     combineToFullName: function() {
@@ -45,82 +48,64 @@ let app = new Vue({
         if (temp.computer === "Rock") {
           temp.result = "Draw";
           this.playerDraw++;
+          this.feedbackMessage = "Draw Game!";
         } else if (temp.computer === "Paper") {
           temp.result = "Lose";
           this.playerLose++;
           this.winIsTrue = false;
+          this.feedbackMessage = "Sorry, let's play again!";
         } else {
           temp.result = "Win";
           this.playerWin++;
           this.winIsTrue = true;
+          this.feedbackMessage = "Congratulations! You win!";
         }
       } else if (temp.player === "Paper") {
         if (temp.computer === "Paper") {
           temp.result = "Draw";
           this.playerDraw++;
+          this.feedbackMessage = "Draw Game!";
         } else if (temp.computer === "Scissor") {
           temp.result = "Lose";
           this.winIsTrue = false;
           this.playerLose++;
+          this.feedbackMessage = "Sorry, let's play again!";
         } else {
           temp.result = "Win";
           this.playerWin++;
           this.winIsTrue = true;
+          this.feedbackMessage = "Congratulations! You win!";
         }
       } else if (temp.player === "Scissor") {
         if (temp.computer === "Scissor") {
           temp.result = "Draw";
+          this.feedbackMessage = "Draw Game!";
           this.playerDraw++;
         } else if (temp.computer === "Rock") {
           temp.result = "Lose";
           this.winIsTrue = false;
           this.playerLose++;
+          this.feedbackMessage = "Sorry, let's play again!";
         } else {
           temp.result = "Win";
           this.playerWin++;
           this.winIsTrue = true;
+          this.feedbackMessage = "Congratulations! You win!";
         }
       }
-
-      // if (temp.player === temp.computer) {
-      //   temp.result = "Draw";
-      //   this.playerDraw++;
-      // } else if (temp.player === "Rock") {
-      //   if (temp.computer === "Paper") {
-      //     temp.result = "Lose";
-      //     this.playerLost++;
-      //   } else {
-      //     temp.result = "Win";
-      //     this.playerWin++;
-      //   }
-      // } else if (temp.player === "Paper") {
-      //   if (temp.computer === "Scissor") {
-      //     temp.result = "Lose";
-      //     this.playerLose++;
-      //   } else {
-      //     temp.result = "Win";
-      //     this.playerWin++;
-      //   }
-      // } else if (temp.player === "Scissor") {
-      //   if (temp.computer === "Rock") {
-      //     temp.result = "Lose";
-      //     this.playerLose++;
-      //   } else {
-      //     temp.result = "Win";
-      //     this.playerWin++;
-      //   }
-      // }
-
       this.Results.push(temp);
+    },
+
+    showOrHideHistory: function() {
+      if (this.soHistory == false) {
+        return (this.soHistory = true);
+      } else return (this.soHistory = false);
+    },
+    showOrHideStatistic: function() {
+      if (this.sStatistic == false) {
+        return (this.sStatistic = true);
+      } else return (this.sStatistic = false);
     }
-    // addToResultObject: function() {
-    //   if (this.RandomNumber == 0) {
-    //     this.Result.computer = "Rock";
-    //   } else if (this.RandomNumber == 1) {
-    //     this.Result.computer = "Paper";
-    //   } else this.Result.computer = "Scissor";
-    //   this.Result.player = this.playerSelected;
-    // }
   },
   computed: {
     totalGame: function() {

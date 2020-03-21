@@ -13,17 +13,31 @@
       }
       .computerSelection {
         background-color: white;
-        width: 50px;
+        width: 65px;
         border: 5px solid rgb(8, 94, 145);
         padding: 5px;
         margin: 2px;
       }
-      .lose {
-        background-color: white;
-        width: 50px;
+      .winMessage {
+        width: auto;
+        margin: 2px;
         border: 5px solid green;
         padding: 5px;
+        background-color: lightgreen;
+      }
+      .loseMessage {
+        width: auto;
         margin: 2px;
+        border: 5px solid red;
+        padding: 5px;
+        background-color: lightpink;
+      }
+      .drawMessage {
+        width: auto;
+        margin: 2px;
+        border: 5px solid yellow;
+        padding: 5px;
+        background-color: lightyellow;
       }
     </style>
 
@@ -33,7 +47,7 @@
   </head>
 
   <body>
-    <div id="app" v-cloak>
+    <div id="app" v-cloak class="container">
       <h1>
         Project Rock Paper Scissors
       </h1>
@@ -45,7 +59,7 @@
           last name:
           <input type="text" v-model.lazy="playerLastName" />
           <button @click="combineToFullName">
-            Combine last name and first name!
+            Let's play!
           </button>
         </label>
       </div>
@@ -67,10 +81,6 @@
         <button v-on:click="genRanNumber">
           Ready to play!
         </button>
-
-        <!-- <ul>
-          <li v-for="RandomNumber in RandomNumbers">{{RandomNumber}}</li>
-        </ul> -->
       </div>
 
       <div class="computersChoice" v-if="playerFullName">
@@ -94,12 +104,37 @@
         </ul>
       </div>
 
-      <div v-if="playerFullName" class="historyResults">
+      <div class="showWinOrLoseMessage">
+        <div v-if="feedbackMessage[0]=='C'" :class="{winMessage:true}">
+          {{feedbackMessage}}
+        </div>
+        <div v-if="feedbackMessage[0]=='S'" :class="{loseMessage:true}">
+          {{feedbackMessage}}
+        </div>
+        <div v-if="feedbackMessage[0]=='D'" :class="{drawMessage:true}">
+          {{feedbackMessage}}
+        </div>
+      </div>
+
+      <button v-if="playerFullName" @click="showOrHideHistory">
+        Game history
+      </button>
+      <button v-if="playerFullName" @click="showOrHideStatistic">
+        Statistic
+      </button>
+      <button v-if="playerFullName">Reset</button>
+
+      <div v-if="playerFullName && soHistory" class="historyResults">
         <ul>
-          <li v-for="theResult in Results ">
-            computer is {{theResult.computer}}, player is {{theResult.player}},
-            Results is {{theResult.result}}
+          <li v-for="(theResult, index, value) in Results ">
+            Round {{index+1}}, computer is {{theResult.computer}}, player is
+            {{theResult.player}}, Results is {{theResult.result}}
           </li>
+        </ul>
+      </div>
+
+      <div v-if="playerFullName && sStatistic" class="statisticResults">
+        <ul>
           <li>
             Total number games you played: {{totalGame}}
           </li>
@@ -113,7 +148,6 @@
             Draw game is {{playerDraw}}
           </li>
         </ul>
-        <!-- Total number games you played: {{totalGame}} -->
       </div>
     </div>
   </body>

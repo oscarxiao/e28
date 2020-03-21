@@ -1,11 +1,34 @@
+.container {
+  margin: auto;
+  background: lightgrey;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
 .computersChoice ul {
   display: inline-flex;
-  margin: 150px;
+  margin: 30px;
 }
 .computersChoice ul li {
   list-style: none;
   margin: 0 20px;
   cursor: pointer;
+}
+.historyResults {
+  width: auto;
+  margin: 1px;
+  border: 5px solid black;
+  padding: 5px;
+  background-color: rgb(140, 215, 245);
+}
+.statisticResults {
+  width: auto;
+  margin: 1px;
+  border: 5px solid black;
+  padding: 5px;
+  background-color: rgb(140, 215, 245);
 }
 /* .computersChoice ul li {
   text-decoration: none;
