@@ -96,11 +96,32 @@ let app = new Vue({
       this.Results.push(temp);
     },
 
+    clearDataProperty: function() {
+      this.playerSelected = "";
+      this.computerSelected = "";
+      this.playerFirstName = null;
+      this.playerLastName = null;
+      this.playerFullName = null;
+      this.playerFullNames = [];
+      this.RandomNumber = null;
+      this.RandomNumbers = [];
+      this.Result = {};
+      this.Results = [];
+      this.playerWin = 0;
+      this.playerLose = 0;
+      this.playerDraw = 0;
+      this.winIsTrue = null;
+      this.feedbackMessage = "";
+      this.soHistory = false;
+      this.sStatistic = false;
+    },
+
     showOrHideHistory: function() {
       if (this.soHistory == false) {
         return (this.soHistory = true);
       } else return (this.soHistory = false);
     },
+
     showOrHideStatistic: function() {
       if (this.sStatistic == false) {
         return (this.sStatistic = true);
