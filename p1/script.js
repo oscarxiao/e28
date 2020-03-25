@@ -1,3 +1,13 @@
+//component Vue instance
+Vue.component("game-statistic", {
+  data: function() {
+    return {};
+  },
+  props: ["playerWin", "playerLose", "playerDraw", "totalGame"],
+  template: "#game-statistic"
+});
+
+//root Vue instance
 let app = new Vue({
   el: "#app",
   data: {
@@ -5,21 +15,21 @@ let app = new Vue({
     computerSelected: "",
     playerFirstName: null,
     playerLastName: null,
-    playerFullName: null,
+    playerFullName: null, // used in statistic button
     playerFullNames: [],
     RandomNumber: null,
     RandomNumbers: [],
     Result: {},
     Results: [],
 
-    playerWin: 0,
-    playerLose: 0,
-    playerDraw: 0,
+    playerWin: 0, // used in statistic button
+    playerLose: 0, // used in statistic button
+    playerDraw: 0, // used in statistic button
 
     winIsTrue: null,
     feedbackMessage: "",
     soHistory: false,
-    sStatistic: false
+    sStatistic: false // used in statistic button
   },
   methods: {
     combineToFullName: function() {
@@ -128,6 +138,7 @@ let app = new Vue({
       } else return (this.sStatistic = false);
     }
   },
+  // used in statistic button
   computed: {
     totalGame: function() {
       return this.Results.length;

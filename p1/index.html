@@ -133,7 +133,9 @@
         </ul>
       </div>
 
-      <div v-if="playerFullName && sStatistic" class="statisticResults">
+
+      <!-- Make a component for the statistic div -->
+      <!-- <div v-if="playerFullName && sStatistic" class="statisticResults">
         <ul>
           <li>
             Total number games you played: {{totalGame}}
@@ -149,6 +151,32 @@
           </li>
         </ul>
       </div>
+    </div> -->
+
+    <game-statistic v-if="playerFullName && sStatistic" class="statisticResults" v-bind:total-game='totalGame' v-bind:player-win='playerWin' v-bind:player-lose="playerLose" v-bind:player-draw="playerDraw" ></game-statistic>
+
+
+
+    <!-- component game-statistic script section -->
+    <script type='text/x-template' id='game-statistic'>
+      <div>
+      <ul>
+        <li>
+          Total number games you played: {{totalGame}}
+        </li>
+        <li>
+          Win is {{playerWin}}
+        </li>
+        <li>
+          Lose is {{playerLose}}
+        </li>
+        <li>
+          Draw game is {{playerDraw}}
+        </li>
+      </ul>
     </div>
+    </script>
+
+
   </body>
 </html>
