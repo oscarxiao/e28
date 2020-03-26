@@ -6,7 +6,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-      href="animate.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
     />
     <style>
       [v-cloak] {
@@ -22,7 +22,7 @@
         from {left: 0px}
         to {left:200px}
       }
-      button {
+      /* button {
         text-align: center;
         cursor: pointer;
         padding: 1rem 3rem;
@@ -37,8 +37,10 @@
         background-image: linear-gradient(-45deg, #f761a1 0, #8c1bab 100%);
         box-shadow: 0 3px 13px 0 rgba(14, 9, 73, 0.2),
           0 11px 21px 0 rgba(255, 166, 220, 0.004);
-        -webkit-animation-duration: 3s;
-      }
+        animation-duration:3s;
+        animation-delay: 2s;
+        animation-iteration-count:infinite;
+      } */
     </style>
 
     <meta charset="utf-8" />
@@ -58,7 +60,7 @@
           <input type="text" v-model.lazy="playerFirstName" />
           last name:
           <input type="text" v-model.lazy="playerLastName" />
-          <button @click="combineToFullName" class="button animated shake">
+          <button @click="combineToFullName" class="animated bounce">
             Let's play!
           </button>
         </label>
@@ -78,7 +80,7 @@
             <option value="Scissors">Scissors</option>
           </select>
         </label>
-        <button v-on:click="genRanNumber" data-micron="bounce">
+        <button v-on:click="genRanNumber">
           Ready to play!
         </button>
       </div>
