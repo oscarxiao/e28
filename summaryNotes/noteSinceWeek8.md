@@ -1,4 +1,6 @@
-# Single File Component (SFC)
+#WEEK 8
+
+## Single File Component (SFC)
 
 1. _Modularity_
 2. _Reusablity_
@@ -62,7 +64,7 @@ p {
    .._ **webpack**, the program that give access to functionality of pre-processing, bundling, and minification etc.
    ..\* **babel**, a plugin to webpack to compiling modern ES6 JS coding into code that the browser can understand
 
-# NPM
+## NPM
 
 - A config file, **package.json** lising all dependencies.
 - A directory, **node_modules** include all packages installed.
@@ -77,9 +79,9 @@ p {
 },
 ```
 
-# NPM registry, a very important resource [link](https://www.npmjs.com/package/packages)
+## NPM registry, a very important resource [link](https://www.npmjs.com/package/packages)
 
-# NPM installation, a bundle with Node.js [link](https://nodejs.org/en/download)
+## NPM installation, a bundle with Node.js [link](https://nodejs.org/en/download)
 
 - command to check in terminal
 
@@ -101,3 +103,100 @@ $ sudo nano /etc/paths
 ```
 
 - after installation, **close and reopen the command line program (termial)**
+
+## integrated build
+
+- a config file, **package.json**, need to be set up under the project root
+  template file
+
+```
+{
+    "private": true, //doesn't want this project to be part of the npm registry, not sharing
+    "scripts": {
+        "dev": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run dev --watch",
+        //keep the build process contantly running, actively looking for changes, but need to refresh pages on the browser
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        //based on "watch" script, no refreshing needed on browser, but only on the webpack server
+        "prod": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "cross-env": "^7.0",
+        "laravel-mix": "^5.0.1", //handling import system, SFC, file minification
+        "vue-template-compiler": "^2.6.11"
+    },
+    "dependencies": {
+        "vue": "^2.0.0"
+    }
+}
+```
+
+- After setting up this package.json file, we can run
+
+```
+$ npm install
+```
+
+- all dependencies will be pulled into our **node_modules** folder and **package-lock.json** will be created too
+
+- create webpack.mix.js file under the project root directory
+
+```
+let mix = require('laravel-mix');
+
+// https://laravel-mix.com/docs/mixjs
+// source: src/script.js
+// output: js/master.js
+mix.js('src/script.js', 'js/master.js');
+
+// hot module reloading using webpack dev server
+// https://laravel-mix.com/docs/hot-module-replacement
+// Used when you run `npm run hot`
+// Note: Specify port 8080 to distinguish it from the port 80 Apache is running on
+mix.options({
+    hmrOptions: {
+        host: 'e28week8.loc'
+        port: 8080,
+    }
+})
+```
+
+- After setting up laravel-mix config file, ready to run the build system using
+
+```
+$ npm run dev
+```
+
+- create **".gitignore"** file to remove tracking on **node_modules** and **hot** for production.
+
+- run command for production locally to get the files ready, master.js in minified
+
+```
+$ npm run prod
+```
+
+- **under producton server**, run command
+
+```
+$ npm install --production
+```
+
+- set up domain in virtual host config file and re-run apache
+
+```
+$nano /etc/apache2/sites-enabled/000-default.conf
+```
+
+```
+<VirtualHost *:80>
+  ServerName e28week8.yourdomain.com
+  DocumentRoot "/var/www/html/e28/week8"
+  <Directory "/var/www/html/e28/week8">
+    AllowOverride All
+  </Directory>
+</VirtualHost>
+```
+
+```
+$ service apache2 restart
+```

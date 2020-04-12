@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Week 8 Examples</title>
+    <meta charset="utf-8" />
+    <link href="data:," rel="icon" />
+    <!-- original script.js was processed by the build system and became master.js  -->
+    <!-- the processed version not only include script.js, but also other js that we pull from outside -->
+    <script src="js/master.js" defer></script>
+
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Week 8 Examples</h1>
+
+    <div id="app" v-cloak>
+      <round-detail
+        v-for="round in rounds"
+        v-bind:key="round.number"
+        v-bind:number="round.number"
+        v-bind:winner="round.winner"
+        v-on:delete-round="deleteRound($event)"
+      >
+        <template v-slot:coin>The coin landed on {{ round.coin }}</template>
+        <template v-slot:choice>The player chose {{ round.choice }}</template>
+      </round-detail>
+    </div>
+  </body>
+</html>
