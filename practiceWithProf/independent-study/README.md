@@ -1,3 +1,0 @@
-## Title
-
-Contents of my independent study would go here...
