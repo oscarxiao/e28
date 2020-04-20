@@ -1,4 +1,6 @@
-#WEEK 8
+# WEEK 8
+
+---
 
 ## Single File Component (SFC)
 
