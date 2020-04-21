@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <img alt="SpeedLab logo" src="./assets/logo.png" />
+    <p>SpeedLab is your expedite and smart way to save and present your lab experimental data.</p>
+    <show-exps></show-exps>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import ShowExps from "./components/ShowExps.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
+    "show-exps": ShowExps
   }
-}
+};
 </script>
 
 <style>
