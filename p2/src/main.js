@@ -13,19 +13,23 @@ const routes = [
   {
     path: "/",
     component: ShowHome,
+    name: "home",
   },
   {
     path: "/experiments",
     component: ShowExps,
+    name: "experiments",
   },
   {
     path: "/featuredExperiments",
     component: ExpFilter,
+    name: "featuredExperiments",
   },
 ];
 
 const router = new VueRouter({
   routes: routes,
+  mode: "history",
 });
 
 new Vue({
