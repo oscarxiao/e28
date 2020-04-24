@@ -1,33 +1,80 @@
 <template>
-  <div>
+  <div class="area">
     <h2>Add New Experiment Data</h2>
 
-    <label for="name">Name</label>
-    <input type="text" v-model="exp.name" id="name" />
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s1">
+          <label for="name">Name...</label>
+          <input type="text" v-model="exp.name" id="name" />
+        </div>
 
-    <label for="slug">URL Identifier:</label>
-    <input type="text" v-model="exp.slug" id="slug" />
+        <div class="input-field col s1">
+          <label for="pepA">Peptide A</label>
+          <input type="number" v-model="exp.pepA" class="validate" id="pepA" />
+        </div>
 
-    <label for="price">Price:</label>
-    <input type="text" v-model="exp.price" id="price" />
+        <div class="input-field col s1">
+          <label for="pepB">Peptide B</label>
+          <input type="number" v-model="exp.pepB" id="pepB" />
+        </div>
 
-    <label for="available">Quantity available:</label>
-    <input type="text" v-model="exp.available" id="available" />
+        <div class="input-field col s1">
+          <label for="pepC">Peptide C</label>
+          <input type="number" v-model="exp.pepC" id="pepC" />
+        </div>
 
-    <label for="weight">Weight (in lbs):</label>
-    <input type="text" v-model="exp.weight" id="weight" />
+        <div class="input-field col s1">
+          <label for="pepD">Peptide D</label>
+          <input type="number" v-model="exp.pepD" id="pepD" />
+        </div>
 
-    <label for="perishable">Perishable?</label>
-    <input type="checkbox" v-model="exp.perishable" id="perishable" />
+        <div class="input-field col s1">
+          <label for="pairSeq">pairSeq</label>
+          <input type="number" v-model="exp.pairSeq" id="pairSeq" />
+        </div>
 
-    <label for="description">Description</label>
-    <textarea v-model="exp.description" id="description"></textarea>
+        <div class="input-field col s1">
+          <label for="pepZero1">No peptide 1</label>
+          <input type="number" v-model="exp.pepZero1" id="pepZero1" />
+        </div>
 
-    <input type="submit" value="Add" />
+        <div class="input-field col s1">
+          <label for="pepZero2">No peptide 2</label>
+          <input type="number" v-model="exp.pepZero2" id="pepZero2" />
+        </div>
+
+        <div class="input-field col s1">
+          <label for="pop1ug">Titration 1ug</label>
+          <input type="number" v-model="exp.pop1ug" id="pop1ug" />
+        </div>
+
+        <div class="input-field col s3">
+          <label for="description">Description</label>
+          <textarea v-model="exp.description" id="description"></textarea>
+        </div>
+      </div>
+    </form>
+
+    <div class="area col s3">
+      <div class="row">
+        <input
+          type="submit"
+          value="Add"
+          class="col s1 waves-effect waves-light btn-large teal lighten-2"
+          @click.prevent="addExperiment"
+        />
+      </div>
+    </div>
+
+    <div class="reminder" v-if="added" transition="fade">
+      Experiment data was saved!
+    </div>
   </div>
 </template>
 
 <script>
+import * as app from "@/common/app.js";
 export default {
   name: "",
   data: function() {
@@ -35,42 +82,67 @@ export default {
       added: false,
       exp: {
         name: "",
-        slug: "",
-        price: "",
-        available: "",
-        weight: "",
-        perishable: false,
+        pepA: "",
+        pepB: "",
+        pepC: "",
+        pepD: "",
+        pairSeq: "",
+        pepZero1: "",
+        pepZero2: "",
+        pop1ug: "",
         description: "",
       },
     };
+  },
+  methods: {
+    addExperiment: function() {
+      app.api.add("allExperiments", this.exp).then((id) => {
+        console.log(
+          "Experiment " + id + " was added to collection allExperiments"
+        );
+      });
+      this.added = true;
+      setTimeout(() => (this.added = false), 3000);
+      this.exp = {
+        name: "",
+        pepA: "",
+        pepB: "",
+        pepC: "",
+        pepD: "",
+        pairSeq: "",
+        pepZero1: "",
+        pepZero2: "",
+        pop1ug: "",
+        description: "",
+      };
+    },
+  },
+  mounted: function() {
+    app.api.find("allExperiments", "name", "eOX1");
   },
 };
 </script>
 
 <style scoped>
-input {
-  font-size: 15pt;
+.area {
+  padding: 20px;
+  widows: 500px;
+  height: 100px;
 }
-
-textarea,
-input[type="text"] {
-  width: 50%;
-}
-
-textarea {
-  height: 75px;
-  display: block;
-  margin: auto;
-}
-
-label {
-  margin-top: 20px;
-  display: block;
+.reminder {
+  background-color: rgb(82, 204, 82);
+  color: white;
+  border-radius: radius;
   font-weight: bold;
+  padding: 5px;
+  margin: 5px;
 }
-
-input[type="submit"] {
-  display: inline-block;
-  margin-top: 10px;
+.fade-enter-active,
+.face-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

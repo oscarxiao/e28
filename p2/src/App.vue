@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="SpeedLab logo" src="./assets/logo.png" />
+    <img class="logo" alt="SpeedLab logo" src="./assets/logo.png" />
     <!-- <show-home></show-home>
     <exp-filter :exps="exps" :description="'Transgene MIRA'"></exp-filter>
     <show-exps></show-exps> -->
@@ -18,7 +18,7 @@
 
 <script>
 // Firebase App (the core Firebase SDK) is always required and must be listed first
-import * as firebase from "firebase/app";
+// import * as firebase from "firebase/app";
 
 // Add the Firebase products that you want to use
 import "firebase/firestore";
@@ -33,7 +33,12 @@ export default {
   data: function() {
     return {
       // exps: exps,
-      links: ["home", "experiments", "featuredExperiments"],
+      links: [
+        "Home",
+        "Experiments",
+        "Featured Experiments",
+        "Add Experiment Data",
+      ],
       // paths: {
       //   home: "/",
       //   experiments: "/experiments",
@@ -43,17 +48,15 @@ export default {
   },
   mounted: function() {
     // Initialize firebase
-    let projectId = "e28-speedlab-ox";
-    firebase.initializeApp({
-      apiKey: "AIzaSyBCir7UdgqdG4Z7yPww7MdYnyDFxWhnel4",
-      authDomain: projectId + ".firebaseapp.com",
-      databaseURL: "https://" + projectId + ".firebaseio.com",
-      projectId: projectId,
-    });
-
-    // Initialize firestore
-    let api = firebase.firestore();
-
+    // let projectId = "e28-speedlab-ox";
+    // firebase.initializeApp({
+    //   apiKey: "AIzaSyBCir7UdgqdG4Z7yPww7MdYnyDFxWhnel4",
+    //   authDomain: projectId + ".firebaseapp.com",
+    //   databaseURL: "https://" + projectId + ".firebaseio.com",
+    //   projectId: projectId,
+    // });
+    // // Initialize firestore
+    // let api = firebase.firestore();
     // api
     //   .collection("allExperiments")
     //   .add({
@@ -74,7 +77,6 @@ export default {
     //   .catch(function(error) {
     //     console.error("Error adding document: ", error);
     //   });
-
     // api
     //   .collection("allExperiments")
     //   .doc("PdvGJ67RhM8rFs917kLE")
@@ -85,17 +87,16 @@ export default {
     //   .catch(function(error) {
     //     console.log("Error getting documents: " + error);
     //   });
-
-    api
-      .collection("allExperiments")
-      .where("name", "==", "eOX2")
-      .get()
-      .then(function(querySnapshot) {
-        console.log(querySnapshot.docs.shift().data());
-      })
-      .catch(function(error) {
-        console.log("Error getting documents: " + error);
-      });
+    // api
+    //   .collection("allExperiments")
+    //   .where("name", "==", "eOX2")
+    //   .get()
+    //   .then(function(querySnapshot) {
+    //     console.log(querySnapshot.docs.shift().data());
+    //   })
+    //   .catch(function(error) {
+    //     console.log("Error getting documents: " + error);
+    //   });
   },
 };
 </script>
@@ -108,5 +109,8 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.logo {
+  border: solid 5px lightblue;
 }
 </style>

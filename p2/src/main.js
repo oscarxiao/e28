@@ -4,6 +4,7 @@ import VueRouter from "vue-router";
 import ShowExps from "./components/ShowExps.vue";
 import ExpFilter from "./components/ExpFilter.vue";
 import ShowHome from "./components/ShowHome.vue";
+import EnterExpDataPage from "./components/EnterExpDataPage.vue";
 
 Vue.use(VueRouter);
 
@@ -13,17 +14,22 @@ const routes = [
   {
     path: "/",
     component: ShowHome,
-    name: "home",
+    name: "Home",
   },
   {
     path: "/experiments",
     component: ShowExps,
-    name: "experiments",
+    name: "Experiments",
   },
   {
     path: "/featuredExperiments",
     component: ExpFilter,
-    name: "featuredExperiments",
+    name: "Featured Experiments",
+  },
+  {
+    path: "/addExpData",
+    component: EnterExpDataPage,
+    name: "Add Experiment Data",
   },
 ];
 

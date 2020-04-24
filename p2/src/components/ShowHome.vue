@@ -1,6 +1,9 @@
 <template>
   <div>
-    <p>SpeedLab is your expedite and smart way to save and present your lab experimental data.</p>
+    <p>
+      SpeedLab is your expedite and smart way to save and present your lab
+      experimental data.
+    </p>
     <exp-filter :exps="exps" :description="featuredCategory"></exp-filter>
   </div>
 </template>
@@ -11,16 +14,15 @@ import ExpFilter from "./ExpFilter.vue";
 export default {
   name: "",
   components: {
-    "exp-filter": ExpFilter
+    "exp-filter": ExpFilter,
   },
   data: function() {
     return {
       featuredCategory: "Regular 369AM MIRA",
-      exps: exps
+      exps: exps,
     };
-  }
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>
