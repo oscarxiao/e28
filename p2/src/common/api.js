@@ -26,7 +26,7 @@ export default class Api {
         .collection(collection)
         .where(field, "==", value)
         .get();
-      console.log(querySnapshot.docs.shift().data());
+      //   console.log(querySnapshot.docs.shift().data());
       return querySnapshot.docs.shift().data();
     } catch (error) {
       return "Error getting documents: " + error;
