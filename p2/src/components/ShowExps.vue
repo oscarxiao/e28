@@ -8,17 +8,29 @@
 <script>
 import ShowExp from "./ShowExp.vue";
 import { exps } from "./../experiments.js";
+import * as app from "@/common/app.js";
 export default {
   components: {
-    "show-exp": ShowExp
+    "show-exp": ShowExp,
   },
   data: function() {
     return {
-      exps: exps
+      exps: exps,
     };
-  }
+  },
+  mounted: function() {
+    this.getAllExperiments;
+  },
+  methods: {
+    getAllExperiments: function() {
+      console.log("getAllExperiments function working");
+      app.api.all("allExperiments").then((response) => {
+        console.log(response);
+        // results[doc.id] = doc.data();
+      });
+    },
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

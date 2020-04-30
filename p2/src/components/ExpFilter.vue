@@ -30,8 +30,8 @@ export default {
       searchExp: null,
       tempLabel: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       tempData: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-      expKeys: [],
-      expValues: [],
+      expKeys: null,
+      expValues: null,
     };
   },
   computed: {
@@ -46,12 +46,12 @@ export default {
     // this.fillData();
   },
   methods: {
-    fillData: function() {
+    fillData: function(keys, values) {
       this.dataCollection = {
         //   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
         // this.expKeys,
         //this.expValues,
-        labels: this.expKeys,
+        labels: keys,
         datasets: [
           {
             label: "cell count #",
@@ -60,7 +60,7 @@ export default {
             pointBackgroundColor: "blue",
             borderWidth: 1,
             pointBorderColor: "blue",
-            data: this.expValues,
+            data: values,
           },
         ],
       };
@@ -73,14 +73,15 @@ export default {
       app.api.find("allExperiments", "name", tempExp).then((response) => {
         tempExpKeys = Object.keys(response);
         tempExpValues = Object.values(response);
+        this.fillData(tempExpKeys, tempExpValues);
         // console.log(tempExpKeys);
         // console.log(tempExpValues);
-        this.expKeys = tempExpKeys;
-        this.expValues = tempExpValues;
-        console.log(this.expKeys);
-        console.log(this.expValues);
+        // this.expKeys = tempExpKeys;
+        // this.expValues = tempExpValues;
+        // console.log(this.expKeys);
+        // console.log(typeof this.expValues);
       });
-      this.fillData();
+      //   this.fillData();
     },
   },
 };
