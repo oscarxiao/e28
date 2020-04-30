@@ -118,7 +118,7 @@ export default {
     },
   },
   mounted: function() {
-    app.api.find("allExperiments", "name", "eOX1");
+    // app.api.find("allExperiments", "name", "eOX1");
   },
 };
 </script>

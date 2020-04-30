@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      SpeedLab is your expedite and smart way to save and present your lab
+      SpeedLab is your expedite and smart way to add, save and present your lab
       experimental data.
     </p>
     <!-- <exp-filter :exps="exps" :description="featuredCategory"></exp-filter> -->
