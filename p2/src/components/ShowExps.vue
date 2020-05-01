@@ -12,11 +12,11 @@ import ShowExp from "./ShowExp.vue";
 import * as app from "@/common/app.js";
 export default {
   components: {
-    "show-exp": ShowExp,
+    "show-exp": ShowExp
   },
   data: function() {
     return {
-      exps: [],
+      exps: []
     };
   },
   mounted: function() {
@@ -27,17 +27,18 @@ export default {
   methods: {
     getAllExps: function() {
       console.log("getAllExps function working");
-      app.api.all("allExperiments").then((response) => {
+      app.api.all("allExperiments").then(response => {
         //   this.exp = response;
         // console.log(Object.values(response));
         this.exps = Object.values(response);
       });
-    },
+    }
     // getAllExperiments: function() {
     //   console.log("getAllExperiments function working");
     // },
-  },
+  }
 };
 </script>
 
-<style></style>
+<style>
+</style>
