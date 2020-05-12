@@ -47,7 +47,6 @@ export default {
     };
   },
   mounted: function() {
-    localStorage.setItem("savedExp", 5);
     // Initialize firebase
     // let projectId = "e28-speedlab-ox";
     // firebase.initializeApp({

@@ -5,7 +5,6 @@ import ShowExps from "./components/ShowExps.vue";
 import ExpFilter from "./components/ExpFilter.vue";
 import ShowHome from "./components/ShowHome.vue";
 import EnterExpDataPage from "./components/EnterExpDataPage.vue";
-import exp from "@/common/exp.js";
 
 Vue.use(VueRouter);
 
@@ -35,7 +34,6 @@ const routes = [
 ];
 
 const router = new VueRouter({
-  exp: exp,
   routes: routes,
   mode: "history",
 });
