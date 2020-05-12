@@ -4,6 +4,7 @@
     <!-- <show-home></show-home>
     <exp-filter :exps="exps" :description="'Transgene MIRA'"></exp-filter>
     <show-exps></show-exps> -->
+    <!-- {{ expCount }} -->
     <nav>
       <ul>
         <li v-for="link in links" :key="link">
@@ -46,57 +47,11 @@ export default {
       // },
     };
   },
-  mounted: function() {
-    // Initialize firebase
-    // let projectId = "e28-speedlab-ox";
-    // firebase.initializeApp({
-    //   apiKey: "AIzaSyBCir7UdgqdG4Z7yPww7MdYnyDFxWhnel4",
-    //   authDomain: projectId + ".firebaseapp.com",
-    //   databaseURL: "https://" + projectId + ".firebaseio.com",
-    //   projectId: projectId,
-    // });
-    // // Initialize firestore
-    // let api = firebase.firestore();
-    // api
-    //   .collection("allExperiments")
-    //   .add({
-    //     name: "eOX2",
-    //     description: "Regular MIRA experiments shared with eEE180",
-    //     pepA: 50000,
-    //     pepB: 30000,
-    //     pepC: 60000,
-    //     pepD: 30000,
-    //     pepZero1: 59000,
-    //     pepZero2: 54000,
-    //     pairSeq: 150000,
-    //     pop1ug: 125000,
-    //   })
-    //   .then(function(docRef) {
-    //     console.log("Document written with ID: ", docRef.id);
-    //   })
-    //   .catch(function(error) {
-    //     console.error("Error adding document: ", error);
-    //   });
-    // api
-    //   .collection("allExperiments")
-    //   .doc("PdvGJ67RhM8rFs917kLE")
-    //   .get()
-    //   .then(function(doc) {
-    //     console.log(doc.data());
-    //   })
-    //   .catch(function(error) {
-    //     console.log("Error getting documents: " + error);
-    //   });
-    // api
-    //   .collection("allExperiments")
-    //   .where("name", "==", "eOX2")
-    //   .get()
-    //   .then(function(querySnapshot) {
-    //     console.log(querySnapshot.docs.shift().data());
-    //   })
-    //   .catch(function(error) {
-    //     console.log("Error getting documents: " + error);
-    //   });
+  mounted: function() {},
+  computed: {
+    expCount: function() {
+      return this.$lab.state.expCount;
+    },
   },
 };
 </script>

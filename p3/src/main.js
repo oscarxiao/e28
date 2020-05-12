@@ -5,6 +5,7 @@ import ShowExps from "./components/ShowExps.vue";
 import ExpFilter from "./components/ExpFilter.vue";
 import ShowHome from "./components/ShowHome.vue";
 import EnterExpDataPage from "./components/EnterExpDataPage.vue";
+import lab from "@/common/lab.js";
 
 Vue.use(VueRouter);
 
@@ -39,6 +40,7 @@ const router = new VueRouter({
 });
 
 new Vue({
+  lab: lab,
   router: router,
   render: (h) => h(App),
 }).$mount("#app");
