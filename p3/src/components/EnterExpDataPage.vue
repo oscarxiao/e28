@@ -75,6 +75,7 @@
 
 <script>
 import * as app from "@/common/app.js";
+import { required, minLength } from "vuelidate/lib/validators";
 export default {
   name: "",
   data: function() {
