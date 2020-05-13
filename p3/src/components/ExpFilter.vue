@@ -48,9 +48,6 @@ export default {
   methods: {
     fillData: function(keys, values) {
       this.dataCollection = {
-        //   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        // this.expKeys,
-        //this.expValues,
         labels: keys,
         datasets: [
           {
@@ -74,14 +71,7 @@ export default {
         tempExpKeys = Object.keys(response);
         tempExpValues = Object.values(response);
         this.fillData(tempExpKeys, tempExpValues);
-        // console.log(tempExpKeys);
-        // console.log(tempExpValues);
-        // this.expKeys = tempExpKeys;
-        // this.expValues = tempExpValues;
-        // console.log(this.expKeys);
-        // console.log(typeof this.expValues);
       });
-      //   this.fillData();
     },
   },
 };

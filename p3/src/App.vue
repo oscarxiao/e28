@@ -48,11 +48,11 @@ export default {
     };
   },
   mounted: function() {},
-  computed: {
-    expCount: function() {
-      return this.$lab.state.expCount;
-    },
-  },
+  // computed: {
+  //   expCount: function() {
+  //     return this.$store.state.expCount;
+  //   },
+  // },
 };
 </script>
 
