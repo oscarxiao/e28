@@ -2,8 +2,16 @@
   <div>
     <h2>Featured Experiments</h2>
     <label>Enter your experiment name: </label>
-    <input type="text" v-model="searchExp" class="center" />
-    <button @click="searchExperiment">Submit</button>
+    <input
+      autoFocus
+      type="text"
+      v-model="searchExp"
+      class="center"
+      data-test="chart-search"
+    />
+    <button @click="searchExperiment" data-test="chart-search-btn">
+      Submit
+    </button>
     <ul>
       <li v-for="exp in FilterdExperiments" :key="exp.id">{{ exp.name }}</li>
     </ul>

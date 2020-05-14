@@ -7,6 +7,7 @@
         <div class="input-field col s1">
           <label for="name">Name...</label>
           <input
+            data-test="new-data-test1"
             type="text"
             v-model="$v.exp.name.$model"
             id="name"
@@ -20,15 +21,16 @@
             <div class="input-feedback-error" v-if="$v.exp.name.minLength">
               Minimum character required is 3!
             </div>
-            <div class="input-feedback-error" v-if="$v.exp.name.doesNotExsit">
+            <!-- <div class="input-feedback-error" v-if="$v.exp.name.doesNotExsit">
               This experiment data exists
-            </div>
+            </div> -->
           </div>
         </div>
 
         <div class="input-field col s1">
           <label for="pepA">Peptide A</label>
           <input
+            data-test="new-data-test2"
             type="number"
             v-model="$v.exp.pepA.$model"
             id="pepA"
@@ -87,6 +89,7 @@
     <div class="area col s3">
       <div class="row">
         <input
+          data-test="new-exp-validation"
           type="submit"
           value="Add"
           class="col s1 waves-effect waves-light btn-large teal lighten-2"
@@ -94,7 +97,13 @@
         />
       </div>
     </div>
-
+    <div
+      class="input-feedback-error"
+      v-if="$v.$anyError"
+      data-test="show-error-msg"
+    >
+      Please check the form again
+    </div>
     <div class="reminder" v-if="added" transition="fade">
       Experiment data was saved!
     </div>
@@ -128,9 +137,9 @@ export default {
       name: {
         required,
         minLength: minLength(3),
-        doesNotExsit(value) {
-          return !this.$store.getters.getExpByName(value);
-        },
+        // doesNotExsit(value) {
+        //   return !this.$store.getters.getExpByName(value);
+        // },
       },
       pepA: {
         numeric,
@@ -139,9 +148,9 @@ export default {
   },
   methods: {
     addExperiment: function() {
-      this.$v.touch();
-      if (this.$v.anyError == false) {
-        this.$v.reset();
+      this.$v.$touch();
+      if (this.$v.$anyError == false) {
+        this.$v.$reset();
         app.api.add("allExperiments", this.exp).then((id) => {
           console.log(
             "Experiment " + id + " was added to collection allExperiments"

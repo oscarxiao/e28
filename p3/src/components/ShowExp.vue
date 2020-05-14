@@ -4,7 +4,9 @@
       <div class="col s12 m12">
         <div class="card blue-grey darken-1">
           <div class="card-content white-text">
-            <span class="card-title">{{exp.name}}</span>
+            <span class="card-title" data-test="unit-test-showexp">{{
+              exp.name
+            }}</span>
             <p>{{ exp.description }}</p>
 
             <table>
@@ -50,7 +52,7 @@ export default {
   props: ["exp"],
   data: function() {
     return {};
-  }
+  },
 };
 </script>
 
