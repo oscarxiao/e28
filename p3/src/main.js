@@ -7,6 +7,7 @@ import ShowHome from "./components/ShowHome.vue";
 import EnterExpDataPage from "./components/EnterExpDataPage.vue";
 import store from "@/common/store";
 import Vuelidate from "vuelidate";
+
 Vue.use(Vuelidate);
 Vue.use(VueRouter);
 

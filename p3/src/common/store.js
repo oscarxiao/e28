@@ -29,4 +29,15 @@ export default new Vuex.Store({
       });
     },
   },
+  getters: {
+    getExpByName(state) {
+      return function(name) {
+        for (let key of Object.keys(state.allExps)) {
+          if (state.allExps[key].name == name) {
+            return state.allExps[key];
+          }
+        }
+      };
+    },
+  },
 });

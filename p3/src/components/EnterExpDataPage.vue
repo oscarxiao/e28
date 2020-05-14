@@ -6,12 +6,40 @@
       <div class="row">
         <div class="input-field col s1">
           <label for="name">Name...</label>
-          <input type="text" v-model="exp.name" id="name" />
+          <input
+            type="text"
+            v-model="$v.exp.name.$model"
+            id="name"
+            :class="{ 'form-input-error': $v.exp.name.$error }"
+          />
+          <small>Min: 3</small>
+          <div v-if="$v.exp.name.$error">
+            <div class="input-feedback-error" v-if="$v.exp.name.required">
+              Full experiemnt name input is required!
+            </div>
+            <div class="input-feedback-error" v-if="$v.exp.name.minLength">
+              Minimum character required is 3!
+            </div>
+            <div class="input-feedback-error" v-if="$v.exp.name.doesNotExsit">
+              This experiment data exists
+            </div>
+          </div>
         </div>
 
         <div class="input-field col s1">
           <label for="pepA">Peptide A</label>
-          <input type="number" v-model="exp.pepA" class="validate" id="pepA" />
+          <input
+            type="number"
+            v-model="$v.exp.pepA.$model"
+            id="pepA"
+            :class="{ 'form-input-error': $v.exp.pepA.$error }"
+          />
+          <small>Numeric input</small>
+          <div v-if="$v.exp.pepA.$error">
+            <div class="input-feedback-error" v-if="$v.exp.pepA.numeric">
+              Experiemnt data input must be numeric
+            </div>
+          </div>
         </div>
 
         <div class="input-field col s1">
@@ -75,7 +103,7 @@
 
 <script>
 import * as app from "@/common/app.js";
-import { required, minLength } from "vuelidate/lib/validators";
+import { required, minLength, numeric } from "vuelidate/lib/validators";
 export default {
   name: "",
   data: function() {
@@ -95,27 +123,45 @@ export default {
       },
     };
   },
+  validations: {
+    exp: {
+      name: {
+        required,
+        minLength: minLength(3),
+        doesNotExsit(value) {
+          return !this.$store.getters.getExpByName(value);
+        },
+      },
+      pepA: {
+        numeric,
+      },
+    },
+  },
   methods: {
     addExperiment: function() {
-      app.api.add("allExperiments", this.exp).then((id) => {
-        console.log(
-          "Experiment " + id + " was added to collection allExperiments"
-        );
-      });
-      this.added = true;
-      setTimeout(() => (this.added = false), 3000);
-      this.exp = {
-        name: "",
-        pepA: "",
-        pepB: "",
-        pepC: "",
-        pepD: "",
-        pairSeq: "",
-        pepZero1: "",
-        pepZero2: "",
-        pop1ug: "",
-        description: "",
-      };
+      this.$v.touch();
+      if (this.$v.anyError == false) {
+        this.$v.reset();
+        app.api.add("allExperiments", this.exp).then((id) => {
+          console.log(
+            "Experiment " + id + " was added to collection allExperiments"
+          );
+        });
+        this.added = true;
+        setTimeout(() => (this.added = false), 3000);
+        this.exp = {
+          name: "",
+          pepA: "",
+          pepB: "",
+          pepC: "",
+          pepD: "",
+          pairSeq: "",
+          pepZero1: "",
+          pepZero2: "",
+          pop1ug: "",
+          description: "",
+        };
+      }
     },
   },
   mounted: function() {},
@@ -143,5 +189,12 @@ export default {
 .fade-enter,
 .fade-leave-to {
   opacity: 0;
+}
+.form-input-error {
+  border-style: solid;
+  border-color: red;
+}
+.input-feedback-error {
+  color: red;
 }
 </style>
