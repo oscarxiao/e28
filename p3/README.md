@@ -1,24 +1,29 @@
-# p2
+Project 3
+By: your first and last name
+Production URL: http://e28p3.oscarate28.me
+Pages summary
 
-## Project setup
-```
-npm install
-```
+1. Home page.
+2. Experiments page (_to show all experiments_)
+3. Featured Experiments page (_to look at specific experiments data with chart_)
+4. Add Experiment data page. (_to add new experiment data_)
+   List the "pages" of your application
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+SFC summary
 
-### Compiles and minifies for production
-```
-npm run build
-```
+1. EnterExpDataPage.vue
+2. ExpFilter.vue
+3. ShowExp.vue
+4. ShowExps.vue
+5. ShowHome.vue
 
-### Lints and fixes files
-```
-npm run lint
-```
+Server interaction
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. using _EnterExpData_ component to add new data and store them in firebase
+2. using _ExpFilter_ to retrieve data and present data in chart.js
+
+Outside resources
+Your list of outside resources go here
+
+Notes for instructor
+I really like the skilled learned from the course and it is very applicable to my work. I would love to extend this project and make it better. Thankk you so much Professor Buck.
